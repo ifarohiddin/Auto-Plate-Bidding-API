@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set VIRTUAL_ENV=C:\Users\kohai\OneDrive\Documents\GitHub\Auto-Plate-Bidding-API\venv
+set VIRTUAL_ENV=C:\Users\Minato\Documents\GitHub\Auto-Plate-Bidding-API\venv
 
 if not defined PROMPT set PROMPT=$P$G
 

@@ -1,46 +1,48 @@
-from pydantic import BaseModel, Field, validator
 from datetime import datetime
-from typing import Optional, List
+from pydantic import BaseModel
+from typing import List, Optional
+from decimal import Decimal
 
-class UserBase(BaseModel):
-    username: str
-    email: str
-
-class UserCreate(UserBase):
-    password: str
-
-class User(UserBase):
-    id: int
-    is_staff: bool
-    class Config:
-        orm_mode = True
-
-class AutoPlateBase(BaseModel):
-    plate_number: str = Field(..., max_length=10)
-    description: str
+class PlateCreate(BaseModel):
+    plate_number: str
+    description: Optional[str] = None
     deadline: datetime
+    is_active: bool = True
 
-class AutoPlateCreate(AutoPlateBase):
-    pass
-
-class AutoPlate(AutoPlateBase):
-    id: int
-    is_active: bool
-    highest_bid: Optional[float] = None
-    bids: List["Bid"] = []
     class Config:
-        orm_mode = True
+        from_attributes = True
 
-class BidBase(BaseModel):
-    amount: float = Field(..., gt=0)
+class PlateResponse(BaseModel):
+    id: int
+    plate_number: str
+    description: Optional[str] = None
+    deadline: datetime
+    is_active: bool
+    highest_bid: Optional[float] = None  # Decimal JSON’da float sifatida qaytariladi
+    bids: Optional[List["BidResponse"]] = None
+
+    class Config:
+        from_attributes = True
+
+class BidCreate(BaseModel):
+    amount: Decimal
     plate_id: int
 
-class BidCreate(BidBase):
-    pass
-
-class Bid(BidBase):
+class BidResponse(BaseModel):
     id: int
+    amount: float  # Decimal JSON’da float sifatida qaytariladi
     user_id: int
+    plate_id: int
     created_at: datetime
+
     class Config:
-        orm_mode = True
+        from_attributes = True
+
+class Token(BaseModel):
+    access_token: str
+    token_type: str
+
+class UserCreate(BaseModel):
+    username: str
+    email: str
+    password: str
