@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Avto Raqam Auksioni</title>
     <link rel="stylesheet" href="style.css">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 </head>
 <body>
     <div class="container">
@@ -16,14 +15,11 @@
                 <h1>Kirish</h1>
                 <div class="input-box">
                     <input type="text" id="username" placeholder="Foydalanuvchi nomi" required>
-                    <i class='bx bxs-user'></i>
+                    <i class="bx bxs-user"></i>
                 </div>
                 <div class="input-box">
                     <input type="password" id="password" placeholder="Parol" required>
-                    <i class='bx bxs-lock-alt'></i>
-                </div>
-                <div class="forgot-link">
-                    <a href="#">Parolni unutdingizmi?</a>
+                    <i class="bx bxs-lock-alt"></i>
                 </div>
                 <button type="submit" class="btn">Kirish</button>
                 <p id="login-error" class="error"></p>
@@ -32,113 +28,62 @@
         </div>
 
         <!-- Register Form -->
-        <div class="form-box register">
+        <div class="form-box register" style="display: none;">
             <form id="register-form">
                 <h1>Ro‘yxatdan o‘tish</h1>
                 <div class="input-box">
                     <input type="text" name="username" placeholder="Foydalanuvchi nomi" required>
-                    <i class='bx bxs-user'></i>
+                    <i class="bx bxs-user"></i>
                 </div>
                 <div class="input-box">
                     <input type="email" name="email" placeholder="Email" required>
-                    <i class='bx bxs-envelope'></i>
+                    <i class="bx bxs-envelope"></i>
                 </div>
                 <div class="input-box">
                     <input type="password" name="password" placeholder="Parol" required>
-                    <i class='bx bxs-lock-alt'></i>
+                    <i class="bx bxs-lock-alt"></i>
                 </div>
                 <button type="submit" class="btn">Ro‘yxatdan o‘tish</button>
                 <p id="register-error" class="error"></p>
                 <p>Hisobingiz bormi? <a href="#" id="show-login">Kirish</a></p>
             </form>
         </div>
-
-        <!-- Toggle Panels -->
-        <div class="toggle-box">
-            <div class="toggle-panel toggle-left">
-                <h1>Xush kelibsiz!</h1>
-                <p>Hisobingiz yo‘qmi?</p>
-                <button class="btn register-btn">Ro‘yxatdan o‘tish</button>
-            </div>
-            <div class="toggle-panel toggle-right">
-                <h1>Xush kelibsiz!</h1>
-                <p>Hisobingiz bormi?</p>
-                <button class="btn login-btn">Kirish</button>
-            </div>
-        </div>
     </div>
 
     <!-- Main App Content -->
     <div id="app" style="display: none;">
-        <header id="header">
+        <header>
             <div class="search-bar">
-                <div class="input-box">
-                    <input type="text" id="search-input" placeholder="Raqam kiriting (masalan, A 123 EA)">
-                    <i class="fas fa-search"></i>
-                </div>
+                <input type="text" id="search-input" placeholder="Raqam kiriting">
                 <button id="search-button" class="btn">Qidirish</button>
             </div>
             <button id="logout-button" class="btn">Chiqish</button>
         </header>
 
         <!-- Plates Section -->
-        <main class="main flow">
-            <h1 class="main__heading">Avtoraqamlar</h1>
-            <div class="main__cards cards">
-                <div class="cards__inner" id="plates-list"></div>
-                <div class="overlay cards__inner"></div>
-            </div>
+        <main>
+            <h1>Avtoraqamlar</h1>
+            <div id="plates-list"></div>
         </main>
 
         <!-- Plate Detail -->
-        <div id="plate-detail" class="form-box" style="display: none;">
+        <div id="plate-detail" style="display: none;">
             <h2 id="plate-title"></h2>
             <p id="plate-description"></p>
-            <p id="plate-deadline"></p>
-            <div class="countdown" id="countdown">
-                <div>
-                    <div class="time-box" id="days">00</div>
-                    <div class="label">Kun</div>
-                </div>
-                <div>
-                    <div class="time-box" id="hours">00</div>
-                    <div class="label">Soat</div>
-                </div>
-                <div>
-                    <div class="time-box" id="minutes">00</div>
-                    <div class="label">Daqiqa</div>
-                </div>
-                <div>
-                    <div class="time-box" id="seconds">00</div>
-                    <div class="label">Soniya</div>
-                </div>
-            </div>
-            <h3>Takliflar</h3>
+            <div id="countdown"></div>
             <ul id="bids-list"></ul>
             <form id="bid-form">
-                <div class="input-box">
-                    <input type="number" id="bid-amount" placeholder="Taklif miqdori" required>
-                    <i class='bx bxs-dollar-circle'></i>
-                </div>
+                <input type="number" id="bid-amount" placeholder="Taklif miqdori" required>
                 <button type="submit" class="btn">Taklif qo‘yish</button>
             </form>
             <p id="bid-message"></p>
             <button id="back-to-list" class="btn">Orqaga</button>
             <div id="staff-actions" style="display: none;">
-                <h3>Admin Paneli</h3>
+                <h3>Admin</h3>
                 <form id="update-plate-form">
-                    <div class="input-box">
-                        <input type="text" id="update-plate-number" placeholder="Yangi raqam">
-                        <i class='bx bxs-car'></i>
-                    </div>
-                    <div class="input-box">
-                        <input type="text" id="update-plate-description" placeholder="Yangi ta’rif">
-                        <i class='bx bxs-edit'></i>
-                    </div>
-                    <div class="input-box">
-                        <input type="datetime-local" id="update-plate-deadline">
-                        <i class='bx bxs-calendar'></i>
-                    </div>
+                    <input type="text" id="update-plate-number" placeholder="Yangi raqam">
+                    <input type="text" id="update-plate-description" placeholder="Yangi ta’rif">
+                    <input type="datetime-local" id="update-plate-deadline">
                     <button type="submit" class="btn">Yangilash</button>
                 </form>
                 <button id="delete-plate-button" class="btn">O‘chirish</button>
@@ -147,21 +92,12 @@
         </div>
 
         <!-- Staff Section -->
-        <div id="staff-section" class="form-box" style="display: none;">
+        <div id="staff-section" style="display: none;">
             <h2>Yangi lot qo‘shish</h2>
             <form id="create-plate-form">
-                <div class="input-box">
-                    <input type="text" id="plate-number" placeholder="Avtoraqam raqami" required>
-                    <i class='bx bxs-car'></i>
-                </div>
-                <div class="input-box">
-                    <input type="text" id="plate-description" placeholder="Ta’rif" required>
-                    <i class='bx bxs-edit'></i>
-                </div>
-                <div class="input-box">
-                    <input type="datetime-local" id="plate-deadline" required>
-                    <i class='bx bxs-calendar'></i>
-                </div>
+                <input type="text" id="plate-number" placeholder="Avtoraqam raqami" required>
+                <input type="text" id="plate-description" placeholder="Ta’rif" required>
+                <input type="datetime-local" id="plate-deadline" required>
                 <button type="submit" class="btn">Qo‘shish</button>
             </form>
             <p id="create-plate-error" class="error"></p>

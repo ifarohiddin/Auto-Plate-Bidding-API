@@ -1,399 +1,149 @@
-@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
-    text-decoration: none;
-    list-style: none;
+    font-family: sans-serif;
 }
 
 body {
     min-height: 100vh;
-    background: #212121; /* Asosiy fon rangi */
-    color: #eceff1; /* Matn rangi */
+    background: #f0f0f0;
+    padding: 20px;
 }
 
-.container {
-    position: relative;
-    width: 850px;
-    height: 550px;
-    background: #2b2b2b; /* Forma fonini bir xil qilish */
-    margin: 20px auto;
-    border-radius: 30px;
-    box-shadow: 0 0 30px rgba(0, 0, 0, .2);
-    overflow: hidden;
+.container, #app {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .form-box {
-    position: absolute;
-    right: 0;
-    width: 50%;
-    height: 100%;
-    background: #2b2b2b; /* Forma fonini moslashtirish */
-    display: flex;
-    align-items: center;
-    color: #eceff1; /* Matn rangi */
-    text-align: center;
-    padding: 40px;
-    z-index: 1;
-    transition: .6s ease-in-out 1.2s, visibility 0s 1s;
+    padding: 20px;
 }
 
-.container.active .form-box { right: 50%; }
-.form-box.register { visibility: hidden; }
-.container.active .form-box.register { visibility: visible; }
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+}
 
-h1 { font-size: 36px; margin: -10px 0; color: #7494ec; } /* Ko‘k sarlavha */
-h2 { font-size: 28px; margin-bottom: 20px; color: #7494ec; }
-h3 { font-size: 20px; margin: 15px 0; color: #7494ec; }
-p { font-size: 14.5px; margin: 15px 0; }
+h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
 
 .input-box {
     position: relative;
-    margin: 20px 0;
+    margin: 15px 0;
 }
 
 .input-box input {
     width: 100%;
-    padding: 13px 50px 13px 20px;
-    background: #343a40; /* Kirish maydonlari fonini moslashtirish */
-    border-radius: 8px;
-    border: none;
-    outline: none;
+    padding: 10px 40px 10px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
     font-size: 16px;
-    color: #eceff1; /* Matn rangi */
-    font-weight: 500;
 }
 
-.input-box input::placeholder { color: #b0b0b0; font-weight: 400; } /* Placeholder rangi */
-.input-box i { position: absolute; right: 20px; top: 50%; transform: translateY(-50%); font-size: 20px; color: #7494ec; } /* Ikonka rangi */
-
-.forgot-link { margin: -15px 0 15px; }
-.forgot-link a { font-size: 14.5px; color: #7494ec; } /* Havola rangi */
+.input-box i {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #555;
+}
 
 .btn {
     width: 100%;
-    height: 48px;
-    background: #7494ec; /* Tugma rangi (ko‘k) */
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    padding: 10px;
+    background: #007bff;
+    color: #fff;
     border: none;
+    border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
-    color: #fff;
-    font-weight: 600;
-    transition: background 0.3s ease;
 }
 
-.btn:hover { background: #5a7bd6; } /* Hover rangi */
-
-.error { color: #e74c3c; text-align: center; }
-.success { color: #27ae60; text-align: center; }
-
-.toggle-box {
-    position: absolute;
-    width: 100%;
-    height: 100%;
+.btn:hover {
+    background: #0056b3;
 }
 
-.toggle-box::before {
-    content: '';
-    position: absolute;
-    left: -250%;
-    width: 300%;
-    height: 100%;
-    background: #7494ec; /* Toggle fon rangi */
-    border-radius: 150px;
-    z-index: 2;
-    transition: 1.8s ease-in-out;
+.error {
+    color: red;
+    text-align: center;
+    margin: 10px 0;
 }
-
-.container.active .toggle-box::before { left: 50%; }
-
-.toggle-panel {
-    position: absolute;
-    width: 50%;
-    height: 100%;
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 2;
-    transition: .6s ease-in-out;
-}
-
-.toggle-panel.toggle-left { left: 0; transition-delay: 1.2s; }
-.container.active .toggle-panel.toggle-left { left: -50%; transition-delay: .6s; }
-.toggle-panel.toggle-right { right: -50%; transition-delay: .6s; }
-.container.active .toggle-panel.toggle-right { right: 0; transition-delay: 1.2s; }
-
-.toggle-panel .btn { width: 160px; height: 46px; background: transparent; border: 2px solid #fff; box-shadow: none; }
-
-#app { width: 100%; padding: 20px; }
 
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 30px;
-    background: linear-gradient(135deg, #2b2b2b 0%, #343a40 100%); /* Gradient fon */
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
     margin-bottom: 20px;
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    border: 1px solid #7494ec; /* Chegara rangi */
 }
 
-.search-bar { 
-    display: flex; 
-    gap: 10px; 
-    align-items: center; 
-    background: #343a40; /* Qidiruv paneli fon rangi */
-    padding: 10px 20px;
-    border-radius: 10px;
-    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2);
+.search-bar {
+    display: flex;
+    gap: 10px;
 }
 
-.search-bar .input-box input {
-    background: transparent;
-    border: 1px solid #7494ec; /* Chegara rangi */
-    color: #eceff1;
+.search-bar input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
-.search-bar .input-box i { color: #7494ec; } /* Qidiruv ikonka rangi */
-
-#logout-button { 
-    background: #e74c3c; 
-    width: 120px; 
-    border-radius: 25px; /* Yumaloqroq dizayn */
-    transition: transform 0.2s ease; 
-}
-#logout-button:hover { 
-    background: #c0392b; 
-    transform: scale(1.05); /* Hoverda kattalashish */
+#plates-list .card {
+    background: #fff;
+    padding: 15px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
 }
 
-.main { max-width: 75rem; padding: 3em 1.5em; }
-.main__heading { font-weight: 600; font-size: 2.25em; margin-bottom: 0.75em; text-align: center; color: #7494ec; } /* Sarlavha rangi */
-
-.cards { position: relative; }
-.cards__inner { display: flex; flex-wrap: wrap; gap: 2.5em; }
-
-.card {
-    --flow-space: 0.5em;
-    --hsl: var(--hue), var(--saturation), var(--lightness);
-    flex: 1 1 14rem;
-    padding: 1.5em 2em;
-    display: grid;
-    grid-template-rows: auto auto auto 1fr;
-    align-items: start;
-    gap: 1.25em;
-    color: #eceff1;
-    background-color: #2b2b2b;
-    border: 1px solid #7494ec44; /* Chegara rangi */
-    border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+#plates-list .card h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
 }
-
-.card:nth-child(1) { --hue: 165; --saturation: 82.26%; --lightness: 51.37%; }
-.card:nth-child(2) { --hue: 291.34; --saturation: 95.9%; --lightness: 61.76%; }
-.card:nth-child(3) { --hue: 338.69; --saturation: 100%; --lightness: 48.04%; }
-
-.card__heading { font-size: 1.5em; font-weight: 600; color: #7494ec; } /* Avtoraqam rangi */
-.card__price { font-size: 1.75em; font-weight: 700; color: #eceff1; }
-.card__bullets { line-height: 1.4; }
-.card__bullets li::before {
-    display: inline-block;
-    content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' width='16' title='check' fill='%237494ec'%3E%3Cpath d='M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z' /%3E%3C/svg%3E"); /* Ko‘k belgi */
-    transform: translatey(0.25ch);
-    margin-right: 1ch;
-}
-
-.flow > * + * { margin-top: var(--flow-space, 1.25em); }
-
-.cta {
-    display: block;
-    align-self: end;
-    margin: 1em 0 0.5em 0;
-    text-align: center;
-    text-decoration: none;
-    color: #fff;
-    background-color: #7494ec; /* Tugma rangi */
-    padding: 0.7em;
-    border-radius: 10px;
-    font-size: 1rem;
-    font-weight: 600;
-    transition: background 0.3s ease;
-}
-
-.cta:hover { background: #5a7bd6; }
-
-.overlay {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    user-select: none;
-    opacity: var(--opacity, 0);
-    -webkit-mask: radial-gradient(25rem 25rem at var(--x) var(--y), #000 1%, transparent 50%);
-    mask: radial-gradient(25rem 25rem at var(--x) var(--y), #000 1%, transparent 50%);
-    transition: 400ms mask ease;
-    will-change: mask;
-}
-
-.overlay .card {
-    background-color: hsla(var(--hsl), 0.15);
-    border-color: hsla(var(--hsl), 1);
-    box-shadow: 0 0 0 1px inset hsl(var(--hsl));
-}
-
-.overlay .cta {
-    display: block;
-    grid-row: -1;
-    width: 100%;
-    background-color: hsl(var(--hsl));
-    box-shadow: 0 0 0 1px hsl(var(--hsl));
-}
-
-:not(.overlay) > .card { transition: 400ms background ease; will-change: background; }
-:not(.overlay) > .card:hover { --lightness: 95%; background: hsla(var(--hsl), 0.1); }
 
 #plate-detail {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(33, 33, 33, 0.95); /* Fonni biroz shaffof qorong‘i qilish */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
     padding: 20px;
-    overflow-y: auto;
 }
 
-#plate-detail .form-box {
-    position: relative;
-    width: 100%;
-    max-width: 600px;
-    background: #2b2b2b;
-    border-radius: 15px;
-    padding: 40px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    border: 1px solid #7494ec44; /* Chegara rangi */
+#countdown {
+    margin: 15px 0;
+    text-align: center;
 }
 
-#plate-title { font-size: 2.5rem; color: #7494ec; } /* Avtoraqam sarlavhasi */
-#plate-description { font-size: 1.2rem; color: #eceff1; }
-#plate-deadline { font-size: 1rem; color: #b0b0b0; }
-
-.countdown { 
-    display: flex; 
-    justify-content: center; 
-    gap: 16px; 
-    flex-wrap: wrap; 
-    text-align: center; 
-    margin: 20px 0; 
-}
-.time-box { 
-    width: 80px; 
-    height: 80px; 
-    border-radius: 12px; 
-    background: #343a40; /* Taymer fon rangi */
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    font-size: 36px; 
-    font-weight: bold; 
-    color: #7494ec; /* Taymer raqamlari rangi */
-    box-shadow: 0 5px 15px rgba(0, 0, 0, .1); 
-    border: 1px solid #7494ec44; 
-}
-.label { 
-    margin-top: 10px; 
-    font-size: 16px; 
-    color: #ddd; 
-    text-transform: uppercase; 
-    font-weight: 500; 
+#bids-list {
+    list-style: none;
+    margin: 15px 0;
 }
 
-#bids-list { 
-    list-style: none; 
-    margin: 20px 0; 
-    max-height: 200px; 
-    overflow-y: auto; 
-    padding: 10px; 
-    background: #343a40; 
-    border-radius: 10px; 
-}
-#bids-list li { 
-    padding: 10px; 
-    background: #2b2b2b; 
-    margin-bottom: 10px; 
-    border-radius: 5px; 
-    color: #eceff1; 
-    border: 1px solid #7494ec44; 
+#bids-list li {
+    padding: 10px;
+    background: #f9f9f9;
+    margin-bottom: 5px;
+    border-radius: 5px;
 }
 
-#bid-form { 
-    display: flex; 
-    gap: 10px; 
-    align-items: center; 
-    margin: 20px 0; 
-}
-#bid-amount { 
-    flex: 1; 
-    background: #343a40; 
-    border: 1px solid #7494ec; 
-    color: #eceff1; 
+#bid-form {
+    display: flex;
+    gap: 10px;
+    margin: 15px 0;
 }
 
-#back-to-list, #delete-plate-button { 
-    background: #95a5a6; 
-    width: 150px; 
-}
-#back-to-list:hover, #delete-plate-button:hover { 
-    background: #7f8c8d; 
-}
-#delete-plate-button { 
-    background: #e74c3c; 
-}
-#delete-plate-button:hover { 
-    background: #c0392b; 
-}
-
-#staff-section { 
-    margin: 20px auto; 
-    max-width: 600px; 
-    background: #2b2b2b; 
-    border-radius: 15px; 
-}
-
-@media (max-width: 768px) {
-    .cards__inner { flex-direction: column; align-items: center; }
-    header { flex-direction: column; gap: 15px; }
-    .search-bar { width: 100%; flex-direction: column; }
-}
-@media (max-width: 650px) {
-    .container { height: calc(100vh - 40px); }
-    .form-box { bottom: 0; width: 100%; height: 70%; }
-    .container.active .form-box { right: 0; bottom: 30%; }
-    .toggle-box::before { left: 0; top: -270%; width: 100%; height: 300%; border-radius: 20vw; }
-    .container.active .toggle-box::before { left: 0; top: 70%; }
-    .toggle-panel { width: 100%; height: 30%; }
-    .toggle-panel.toggle-left { top: 0; }
-    .toggle-panel.toggle-right { right: 0; bottom: -30%; }
-    .container.active .toggle-panel.toggle-right { bottom: 0; }
-}
-@media (max-width: 400px) {
-    .form-box { padding: 20px; }
-    .toggle-panel h1 { font-size: 30px; }
-    .time-box { width: 60px; height: 60px; font-size: 28px; }
+@media (max-width: 600px) {
+    .container, #app {
+        padding: 10px;
+    }
+    header {
+        flex-direction: column;
+        gap: 10px;
+    }
+    #bid-form {
+        flex-direction: column;
+    }
 }
